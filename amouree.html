@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>hex.</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: "Fortnite";
+            src: url("Fortnite.otf") format("opentype");
+        }
+
+        @font-face {
+            font-family: "Roblox";
+            src: url("ROBLOX.ttf") format("truetype");
+        }
+
+        @font-face {
+            font-family: "Valorant";
+            src: url("Valorant.ttf") format("truetype");
+        }
+
+        :root {
+            --font-family: sans-serif;
+            --font-size: 14px;
+            --letter-spacing: normal;
+            --font-color: white;
+        }
+
+        .content {
+            background-color: black;
+            color: white;
+            font-family: "Jersey 15", serif;
+            font-weight: 400;
+            font-size: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-style: normal;
+            text-shadow: 2px 2px 5px rgba(201, 148, 142, 255);
+        }
+
+        .not-bold p,
+        h2 {
+            display: block;
+            font-size: 40px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1,
+        h2,
+        p {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            text-shadow: 2px 2px 5px rgba(201, 148, 142, 255);
+        }
+
+        .center-card {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #c9958e00;
+            padding: 20px 30px;
+            border-radius: 10px;
+            border-color: #c9958e;
+            border: 2px dotted;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            height: auto;
+            min-height: 150px;
+        }
+
+        .divider {
+            width: 2px;
+            background-color: #c9958e;
+        }
+
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .card-content h1 {
+            margin: 0;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            align-self: center;
+        }
+
+        .card-content p {
+            font-size: 15px;
+            text-align: left;
+        }
+
+        .me-icon {
+            width: 30%;
+            max-width: 150px;
+            border-radius: 10px;
+        }
+
+        #star-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('star-icon.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(6)
+            }
+        }
+
+        .credit-card {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            font-family: sans-serif;
+        }
+
+        .ribbon-text {
+            position: absolute;
+            top: -38px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            font-weight: bold;
+            color: #c9958e;
+            z-index: 10;
+            letter-spacing: -6px;
+        }
+
+        .icon-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 510px;
+            width: 20%;
+            margin-left: -60px;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            filter: invert(100%);
+            transform-origin: center;
+        }
+
+        .icon img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            display: block;
+            margin: 0;
+            padding: 0;
+            transform-origin: center;
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        .icon-tooltip {
+            position: fixed;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: initial;
+            font-family: initial;
+            font-style: initial;
+            font-weight: initial;
+            letter-spacing: initial;
+            line-height: initial;
+            text-shadow: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            white-space: nowrap;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+
+            font-family: var(--font-family) !important;
+            letter-spacing: var(--letter-spacing) !important;
+        }
+
+        .icon:nth-child(1) .icon-tooltip {
+            --font-family: "Roblox", sans-serif;
+            --letter-spacing: 1px;
+        }
+
+        .icon:nth-child(2) .icon-tooltip {
+            --font-family: "Fortnite", sans-serif;
+            --letter-spacing: 1.9px;
+        }
+
+        .icon:nth-child(3) .icon-tooltip {
+            --font-family: "Valorant", sans-serif;
+            --letter-spacing: 0.3px;
+        }
+
+        .icon:hover .icon-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(-5px);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const starContainer = document.getElementById('star-container');
+
+            function twinkle() {
+                const starElement = document.createElement('div');
+                starElement.classList.add('star');
+
+                const randomX = Math.random() * 100;
+                const randomY = Math.random() * 100;
+                const randomDelay = Math.random() * 5;
+
+                starElement.style.left = `${randomX}%`;
+                starElement.style.top = `${randomY}%`;
+                starElement.style.animationDelay = `${randomDelay}s`;
+
+                starContainer.appendChild(starElement);
+
+                setTimeout(() => {
+                    starContainer.removeChild(starElement);
+                }, 5000);
+            }
+
+            function start() {
+                setInterval(twinkle, 500);
+            }
+
+            start();
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.icon').forEach(icon => {
+            const tooltip = icon.querySelector('.icon-tooltip');
+
+            icon.addEventListener('mousemove', (e) => {
+                const offsetX = 15;
+                const offsetY = 15;
+
+                tooltip.style.top = `${e.clientY + offsetY}px`;
+                tooltip.style.left = `${e.clientX + offsetX}px`;
+                tooltip.style.opacity = 1;
+                tooltip.style.visibility = 'visible';
+            });
+
+            icon.addEventListener('mouseleave', () => {
+                tooltip.style.opacity = 0;
+                tooltip.style.visibility = 'hidden';
+            });
+        });
+    </script>
+</head>
+
+<body class="content">
+    <h1>Welcome.</h1>
+    <h2>About me.</h2>
+    <h2>✦</h2>
+    <div id="star-container"></div>
+    <div class="center-card">
+        <div class="ribbon-text">୨୧</div>
+        <img class="me-icon" src="me-icon.gif" alt="Amouree">
+        <div class="card-content">
+            <h1>Read Me.</h1>
+            <p>She/Her. This website took 2 hours. Thank you for reading this</p>
+            <p>Hi Bobby, Hi Zal, Hi illy.</p>
+        </div>
+    </div>
+
+    <div class="icon-container">
+        <div class="icon">
+            <img src="roblox.svg" alt="Roblox" />
+            <div class="icon-tooltip">Username: l0vs1p</div>
+        </div>
+        <div class="icon">
+            <img src="fortnite.svg" alt="Fortnite" />
+            <div class="icon-tooltip">Username: SleepyPlatinum</div>
+        </div>
+        <div class="icon">
+            <img src="valorant.svg" alt="Valorant" />
+            <div class="icon-tooltip">Username: AmoureeXO</div>
+        </div>
+    </div>
+
+    <div class="credit-card">
+        Made by .amouree.☆
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+<!-- TODO: Make the stars twinkle more, and rotate randomly -->
+<!-- TODO: Add constants for amount of stars, timeout, lifetime, and frequency -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amouree's Landing</title>
+    <style>
+        .not-bold {
+            background-color: #250e2c;
+            color: #cc8db3;
+        }
+
+        html {
+            height: 100%;
+            margin: 0;
+            background:
+            radial-gradient(circle at 20% 30%, #ff5edf, transparent 60%),
+            radial-gradient(circle at 80% 40%, #04c2c9, transparent 50%),
+            radial-gradient(circle at 50% 75%, #2f80ed, transparent 40%),
+            radial-gradient(circle at 25% 90%, #d6249f, transparent 40%),
+            linear-gradient(to top, #000428, #004e92);
+            
+            background-blend-mode: screen;
+            background-color: #000;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .center-card {
+             background: white;
+             padding: 20px 30px;
+             border-radius: 10px;
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+             text-align: center;
+             max-width: 400px;
+             width: 90%;
+         }
+
+
+        /* .center-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            max-width: 600px;
+            width: 90%;
+        } */
+/* 
+        .card-image {
+            max-width: 300px;
+            margin-right: 20px;
+        }
+
+        .card-content {
+            flex: 1;
+        } */
+
+         body {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             height: 100vh;
+             margin: 0;
+             font-family: Arial, sans-serif;
+         }
+
+        .portal-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .portal-container img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .portal-container .portal button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ff5edf;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .portal-container .portal button:hover {
+            background-color: #e44ecc;
+        }
+
+        #star-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('star.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.2);    
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        .cat-on-clouds {
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            transform: translate(-50%, 0);
+            max-width: 50px;
+            z-index: 2;
+            pointer-events: none;
+            scale: 0.2;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const starContainer = document.getElementById('star-container');
+
+            function twinkle() {
+                const starElement = document.createElement('div');
+                starElement.classList.add('star');
+
+                const randomX = Math.random() * 100;
+                const randomY = Math.random() * 100;
+                const randomDelay = Math.random() * 5;
+
+                starElement.style.left = `${randomX}%`;
+                starElement.style.top = `${randomY}%`;
+                starElement.style.animationDelay = `${randomDelay}s`;
+
+                starContainer.appendChild(starElement);
+
+                setTimeout(() => {
+                    starContainer.removeChild(starElement);
+                }, 5000);
+            }
+
+            function start() {
+                setInterval(twinkle, 500);
+            }
+
+            start();
+        });
+    </script>
+</head>
+
+<!-- <body>
+
+    
+    <div class="center-card">
+    <img src="spacegirl.jpg" alt="Icon Image" class="card-image">
+
+    <div id="star-container"></div>
+    <div class="center-card">
+        <img src="spacegirl.jpg" alt="Icon Image" class="card-image">
+        <div class="card-content">
+            <h2>Amouree's Landing</h2>
+            <p>Hello! I'm a big nerd who needs to play val with illy more often</p>
+            <p>If you want to checkout my website, go to <a href="http://itzilly.com" target="_blank">my website</a> to see more of what I'm up to!</p>
+        </div>
+        <div class="portal-container">
+            <img src="portal-icon.png" alt="Pink Portal">
+            <button type="button" onclick="console.log('clicked!')">Join The Discord</button>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+<body>
+    <div id="star-container"></div>
+    <div class="center-card">
+        <h2>Amouree's Landing</h2>
+        <p>Hello! I'm a big nerd who needs to play val with illy more often</p>
+        <p>If you want to checkout my website, go to <a href="http://itzilly.com" target="_blank">my website</a> to see more of what I'm up to!</p>
+
+        <div class="portal-container">
+            <img src="portal-icon.png" alt="Pink Portal">
+            <img class="cat-on-clouds" src="sleeping-cat.gif" alt="Sleeping Cat">
+            <div class="portal">
+                <button type="button" onclick="console.log('clicked!')">Join The Discord</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
